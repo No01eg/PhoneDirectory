@@ -14,7 +14,7 @@ namespace Client
     public static void SendMessageFromSocket(PacketDat pcd,cmdType cmd,int port)
     {
       //Буфер для входящих данных
-      byte[] bytes = new byte[1024];
+      byte[] bytes = new byte[512];
 
       //Соединяемся с удаленным устройством
 
