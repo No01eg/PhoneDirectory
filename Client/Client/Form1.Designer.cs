@@ -166,6 +166,7 @@
       this.Name = "PhoneDir";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Телефонный справочник (клиент)";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PhoneDir_FormClosing);
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();

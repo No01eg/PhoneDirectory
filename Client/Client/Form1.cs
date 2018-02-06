@@ -61,9 +61,21 @@ namespace Client
       }
     }
 
-    private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    private void PhoneDir_FormClosing(object sender, FormClosingEventArgs e)
     {
-
+      PacketDat dataP = new PacketDat();
+      dataP.cName = "<TheEnd>";
+      dataP.cPhone = " ";
+      dataP.cMail = " ";
+      //dataP.ToByte(cmdType.Add);
+      try
+      {
+        TcpModule.SendMessageFromSocket(dataP, cmdType.Add, 11000);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.ToString(), "Проблема соединения");
+      }
     }
   }
 }

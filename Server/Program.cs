@@ -37,7 +37,6 @@ namespace Server
 
           //Программа приостанавливается, ожидая входящее соединение
           Socket handler = sListener.Accept();
-          //string data = null;
 
           //мы дождались клиента, пытающегося с нами соединиться
           byte[] bytes = new byte[512];
@@ -45,7 +44,6 @@ namespace Server
 
           pcd = PacketDat.FromByte(out cmd, bytes);
 
-          //data += Encoding.UTF8.GetString(bytes, 0, bytesRec);
 
           //Показываем данные на консоли
           Console.WriteLine("Полученный текст:\n\n");
