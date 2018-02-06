@@ -147,7 +147,7 @@
       // 
       this.mail.HeaderText = "Почта";
       this.mail.Name = "mail";
-      this.mail.Width = 145;
+      this.mail.Width = 130;
       // 
       // PhoneDir
       // 

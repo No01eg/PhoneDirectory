@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
+using ConnectCard;
 
 namespace Client
 {
   public class TcpModule
   {
-    public static void SendMessageFromSocket(string messag,int port)
+    public static void SendMessageFromSocket(PacketDat pcd,cmdType cmd,int port)
     {
       //Буфер для входящих данных
       byte[] bytes = new byte[1024];
@@ -27,12 +28,9 @@ namespace Client
       //Соединяем сокет с удаленной точкой
       sendSocket.Connect(ipEndPoint);
 
-      byte[] msg = Encoding.UTF8.GetBytes("ADD ");
+      byte[] msg = pcd.ToByte(cmd);
       //отправляем данные через сокет
       int byteCount = sendSocket.Send(msg);
-      msg = Encoding.UTF8.GetBytes(messag);
-      //отправляем данные через сокет
-      byteCount = sendSocket.Send(msg);
 
       sendSocket.Shutdown(SocketShutdown.Both);
       sendSocket.Close();
