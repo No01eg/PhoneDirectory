@@ -40,7 +40,6 @@
       this.usName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.mail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.adding = new System.Windows.Forms.DataGridViewTextBoxColumn();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.SuspendLayout();
       // 
@@ -126,42 +125,35 @@
       this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.usName,
             this.phone,
-            this.mail,
-            this.adding});
+            this.mail});
       this.dataGridView1.Location = new System.Drawing.Point(12, 67);
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.Size = new System.Drawing.Size(475, 47);
       this.dataGridView1.TabIndex = 6;
-      this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
       // 
       // usName
       // 
       this.usName.HeaderText = "ФИО";
       this.usName.Name = "usName";
+      this.usName.Width = 160;
       // 
       // phone
       // 
       this.phone.HeaderText = "Номер";
       this.phone.Name = "phone";
-      this.phone.Width = 90;
-      this.dataGridView1.Rows[0].Cells[1].Value = "+375295922121";
+      this.phone.Width = 120;
       // 
       // mail
       // 
       this.mail.HeaderText = "Почта";
       this.mail.Name = "mail";
-      this.mail.Width = 110;
-      // 
-      // adding
-      // 
-      this.adding.HeaderText = "Пометки";
-      this.adding.Name = "adding";
+      this.mail.Width = 145;
       // 
       // PhoneDir
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(499, 116);
+      this.ClientSize = new System.Drawing.Size(499, 117);
       this.Controls.Add(this.dataGridView1);
       this.Controls.Add(this.bDelete);
       this.Controls.Add(this.bAdd);
@@ -193,7 +185,6 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn usName;
     private System.Windows.Forms.DataGridViewTextBoxColumn phone;
     private System.Windows.Forms.DataGridViewTextBoxColumn mail;
-    private System.Windows.Forms.DataGridViewTextBoxColumn adding;
   }
 }
 
