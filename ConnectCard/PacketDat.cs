@@ -13,43 +13,44 @@ namespace ConnectCard
     Del_OK      //Запись удалена
   }
 
-  public class Packet
+  public class PacketDat
   {
-    string cName { get; set; }
-    string cPhone { get; set; }
-    string cMail { get; set; }
+    public string cName { get; set; }
+    public string cPhone { get; set; }
+    public string cMail { get; set; }
 
     /*
      * Преобразуем наш объект в массив байт
      */
-    public byte[] ToByte(cmdType cmd, Packet pct)
+    public byte[] ToByte(cmdType cmd)
     {
       byte cmdB = (byte)cmd;
-      string data = string.Format("{0};{1};{2}",pct.cName,pct.cPhone,pct.cMail);
+      string data = string.Format("{0};{1};{2}", cName, cPhone, cMail);
       byte[] datB = Encoding.UTF8.GetBytes(data);
 
-      var messageData = new byte[data.Length + 1];
+      var messageData = new byte[datB.Length + 1];
       using (var stream = new MemoryStream(messageData))
       {
         var writer = new BinaryWriter(stream);
-        writer.Write(datB);//команда
-        writer.Write(data);//данные
+        writer.Write(cmdB);//команда
+        writer.Write(datB);//данные
         return messageData;
       }
     }
 
-    public static Packet FromByte(out cmdType cmd, byte[] bytes)
+    public static PacketDat FromByte(out cmdType cmd, byte[] bytes)
     {
       using (var ms = new MemoryStream(bytes))
       {
         var br = new BinaryReader(ms);
-        var CurrentObject = new Packet();
+        var CurrentObject = new PacketDat();
         cmd = (cmdType)br.ReadByte();
         string dataPre = Encoding.UTF8.GetString(br.ReadBytes(bytes.Length -1));
+        dataPre = dataPre.Trim(null);
         string[] data = dataPre.Split(';');
         CurrentObject.cName = data[0];
         CurrentObject.cPhone = data[1];
-        CurrentObject.cMail = data[2];
+        CurrentObject.cMail = data[2].TrimEnd('\0');
         return CurrentObject;
       }
     }
