@@ -30,7 +30,6 @@
     {
       this.components = new System.ComponentModel.Container();
       this.rbNameSearch = new System.Windows.Forms.RadioButton();
-      this.rbDescriptSearch = new System.Windows.Forms.RadioButton();
       this.bSearchStart = new System.Windows.Forms.Button();
       this.tbSearchText = new System.Windows.Forms.TextBox();
       this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -55,17 +54,6 @@
       this.rbNameSearch.TabStop = true;
       this.rbNameSearch.Text = "Поиск по ФИО";
       this.rbNameSearch.UseVisualStyleBackColor = true;
-      // 
-      // rbDescriptSearch
-      // 
-      this.rbDescriptSearch.AutoSize = true;
-      this.rbDescriptSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-      this.rbDescriptSearch.Location = new System.Drawing.Point(120, 41);
-      this.rbDescriptSearch.Name = "rbDescriptSearch";
-      this.rbDescriptSearch.Size = new System.Drawing.Size(125, 17);
-      this.rbDescriptSearch.TabIndex = 1;
-      this.rbDescriptSearch.Text = "Поиск по описанию";
-      this.rbDescriptSearch.UseVisualStyleBackColor = true;
       // 
       // bSearchStart
       // 
@@ -159,7 +147,6 @@
       this.Controls.Add(this.bAdd);
       this.Controls.Add(this.tbSearchText);
       this.Controls.Add(this.bSearchStart);
-      this.Controls.Add(this.rbDescriptSearch);
       this.Controls.Add(this.rbNameSearch);
       this.MaximumSize = new System.Drawing.Size(1000, 300);
       this.MinimumSize = new System.Drawing.Size(400, 155);
@@ -176,7 +163,6 @@
     #endregion
 
     private System.Windows.Forms.RadioButton rbNameSearch;
-    private System.Windows.Forms.RadioButton rbDescriptSearch;
     private System.Windows.Forms.Button bSearchStart;
     protected System.Windows.Forms.TextBox tbSearchText;
     private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;

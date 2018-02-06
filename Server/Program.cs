@@ -44,7 +44,15 @@ namespace Server
 
           pcd = PacketDat.FromByte(out cmd, bytes);
 
-
+          switch(cmd)
+          {
+            case cmdType.Add:
+              DBModule.PushDBData(pcd);
+              break;
+            default:
+              Console.WriteLine("ERROR: Неправильный тип");
+              break;
+          }
           //Показываем данные на консоли
           Console.WriteLine("Полученный текст:\n\n");
           Console.WriteLine("{0}\n{1}\n{2}\n",pcd.cName,pcd.cPhone,pcd.cMail);
