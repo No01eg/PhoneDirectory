@@ -27,14 +27,19 @@ namespace Client
         return;
       }
       //Соединяемся через соект с сервером и передаем ему данные
-      /*try
+      PacketDat dataP = new PacketDat();
+      dataP.cName = tbSearchText.Text;
+      dataP.cPhone = " ";
+      dataP.cMail = " ";
+      dataGridView1.Rows.Clear();
+      try
       {
-        TcpModule.SendMessageFromSocket(tbSearchText.Text,11000);
+        TcpModule.SendMessageFromSocket(dataP, cmdType.Search, 11000);
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         MessageBox.Show(ex.ToString(), "Проблема соединения");
-      }*/
+      }
     }
 
     private void bAdd_Click(object sender, EventArgs e)
@@ -50,7 +55,6 @@ namespace Client
       dataP.cName = (string)dataGridView1.Rows[0].Cells[0].Value;
       dataP.cPhone = (string)dataGridView1.Rows[0].Cells[1].Value;
       dataP.cMail = (string)dataGridView1.Rows[0].Cells[2].Value;
-      //dataP.ToByte(cmdType.Add);
       try
       {
         TcpModule.SendMessageFromSocket(dataP,cmdType.Add, 11000);

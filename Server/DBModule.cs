@@ -28,5 +28,27 @@ namespace Server
       npgSqlConnection.Close();
       //Console.ReadKey(true);
     }
+
+    public static NpgsqlDataReader PullDBData(PacketDat pcd)
+    {
+      String connectionString = "Server=localhost;Port=5432;User=postgres;Password=1;Database=PhoneDirDB;";
+      NpgsqlConnection npgSqlConnection = new NpgsqlConnection(connectionString);
+      npgSqlConnection.Open();
+      Console.WriteLine("Соединение с БД открыто");
+      string data = string.Format(@"SELECT * FROM dbphone WHERE NAME LIKE '%{0}%'", pcd.cName);
+      NpgsqlCommand npgSqlCommand = new NpgsqlCommand(data, npgSqlConnection);
+      NpgsqlDataReader npgSqlDataReader = npgSqlCommand.ExecuteReader();
+      return npgSqlDataReader;
+      /*if (npgSqlDataReader.HasRows)
+      {
+        Console.WriteLine("Таблица: example");
+        Console.WriteLine("id value");
+        foreach (DbDataRecord dbDataRecord in npgSqlDataReader)
+          Console.WriteLine(dbDataRecord["name"] + "   " + dbDataRecord["phonenum"] + "   " + dbDataRecord["email"]);
+      }
+      else
+        Console.WriteLine("Запрос не вернул строк");*/
+
+    }
   }
 }

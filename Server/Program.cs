@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using ConnectCard;
+using Npgsql;
+using System.Data.Common;
 
 
 namespace Server
@@ -48,6 +50,18 @@ namespace Server
           {
             case cmdType.Add:
               DBModule.PushDBData(pcd);
+              break;
+            case cmdType.Search:
+              NpgsqlDataReader npgSqlDataReader = DBModule.PullDBData(pcd);
+              if (npgSqlDataReader.HasRows)
+              {
+                foreach (DbDataRecord dbDataRecord in npgSqlDataReader)
+                {
+                  Console.WriteLine(dbDataRecord["name"] + "   " + dbDataRecord["phonenum"] + "   " + dbDataRecord["email"]);
+                }
+              }
+              else
+                Console.WriteLine("Запрос не вернул строк");
               break;
             default:
               Console.WriteLine("ERROR: Неправильный тип");
