@@ -57,11 +57,15 @@ namespace Client
       dataP.cMail = (string)dataGridView1.Rows[0].Cells[2].Value;
       try
       {
-        TcpModule.SendMessageFromSocket(dataP,cmdType.Add, 11000);
+        TcpModule.SendMessageFromSocket(dataP, cmdType.Add, 11000);
       }
       catch (Exception ex)
       {
         MessageBox.Show(ex.ToString(), "Проблема соединения");
+      }
+      finally
+      {
+        dataGridView1.Rows.Clear();
       }
     }
 
