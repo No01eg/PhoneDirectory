@@ -21,7 +21,8 @@ namespace Client
 
     private void bSearchStart_Click(object sender, EventArgs e)
     {
-      if(tbSearchText.Text == "")//на случай если забыли ввесли ключ поиска
+      List<PacketDat> pcdL = new List<PacketDat>();
+      if (tbSearchText.Text == "")//на случай если забыли ввесли ключ поиска
       {
         MessageBox.Show("\tВведите данные \nдля поиска карточки в базе","Внимание!");
         return;
@@ -32,9 +33,19 @@ namespace Client
       dataP.cPhone = " ";
       dataP.cMail = " ";
       dataGridView1.Rows.Clear();
+      //pcdL.Clear();
       try
       {
-        TcpModule.SendMessageFromSocket(dataP, cmdType.Search, 11000);
+        pcdL = TcpModule.SendMessageFromSocket(dataP, cmdType.Search, 11000);
+        dataGridView1.RowCount = pcdL.Capacity;
+        int i = 0;
+        foreach(PacketDat pcd in pcdL)
+        {
+          dataGridView1.Rows[i].Cells[0].Value = pcd.cName;
+          dataGridView1.Rows[i].Cells[1].Value = pcd.cPhone;
+          dataGridView1.Rows[i].Cells[2].Value = pcd.cMail;
+          i++;
+        }
       }
       catch (Exception ex)
       {
@@ -71,7 +82,7 @@ namespace Client
 
     private void PhoneDir_FormClosing(object sender, FormClosingEventArgs e)
     {
-      PacketDat dataP = new PacketDat();
+      /*PacketDat dataP = new PacketDat();
       dataP.cName = "<TheEnd>";
       dataP.cPhone = " ";
       dataP.cMail = " ";
@@ -83,7 +94,7 @@ namespace Client
       catch (Exception ex)
       {
         MessageBox.Show(ex.ToString(), "Проблема соединения");
-      }
+      }*/
     }
   }
 }

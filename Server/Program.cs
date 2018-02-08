@@ -50,6 +50,7 @@ namespace Server
           {
             case cmdType.Add:
               DBModule.PushDBData(pcd);
+              handler.Send(pcd.ToByte(cmdType.Add_OK));
               break;
             case cmdType.Search:
               NpgsqlDataReader npgSqlDataReader = DBModule.PullDBData(pcd);
@@ -58,10 +59,18 @@ namespace Server
                 foreach (DbDataRecord dbDataRecord in npgSqlDataReader)
                 {
                   Console.WriteLine(dbDataRecord["name"] + "   " + dbDataRecord["phonenum"] + "   " + dbDataRecord["email"]);
+                  pcd.cName = dbDataRecord["name"].ToString();
+                  pcd.cPhone = dbDataRecord["phonenum"].ToString();
+                  pcd.cMail = dbDataRecord["email"].ToString();
+                  handler.Send(pcd.ToByte(cmdType.Srch_OK));
                 }
+                handler.Send(pcd.ToByte(cmdType.Srch_FAIL));
               }
               else
+              {
+                handler.Send(pcd.ToByte(cmdType.Srch_FAIL));
                 Console.WriteLine("Запрос не вернул строк");
+              }
               break;
             default:
               Console.WriteLine("ERROR: Неправильный тип");
